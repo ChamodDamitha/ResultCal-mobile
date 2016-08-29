@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app=angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic','AuthService'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -26,29 +26,78 @@ var app=angular.module('starter', ['ionic'])
   $stateProvider
 
       .state('home',{
+          cache:false,
           url:'/home',
           templateUrl:'templates/menu.html',
-          absolute:true
+          controller:'semesterController as semCtrl',
+          abstract:true
       })
 
-      .state('login', {
-          controller:'studentController',
-        url: '/login',
-        templateUrl: 'templates/login.html'
+      .state('home.login', {
+          cache:false,
+          url: '/login',
+          views: {
+              'menuContent': {
+                  templateUrl: 'templates/login.html',
+                  controller: 'studentController as studCtrl'
+              }
+          }
+
+      })
+      .state('home.signup', {
+          cache:false,
+          url: '/signup',
+          views: {
+              'menuContent': {
+                  templateUrl: 'templates/signup.html',
+                  controller: 'studentController'
+              }
+          }
+
       })
 
     .state('home.results',{
-        url:'/:semester/results',
+        cache:false,
+        url:'/results/:semester',
         views:{
             'menuContent':{
                 templateUrl:'templates/results.html',
-                controller:'semesterController'
+
             }
         }
-    });
+    })
+      .state('home.about',{
+          cache:false,
+          url:'/about',
+          views:{
+              'menuContent':{
+                  templateUrl:'templates/about.html',
+              }
+          }
+      })
+      .state('home.addSubject',{
+          cache:false,
+          url:'/:semester/addSubject',
+          views:{
+              'menuContent':{
+                  templateUrl:'templates/addSubject.html',
+              }
+          }
+      })
+      .state('home.editSubject',{
+          cache:false,
+          url:'/:semester/editSubject/:subjectname',
+          views:{
+              'menuContent':{
+                  templateUrl:'templates/editSubject.html',
+              }
+          }
+      })
+
+  ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/home/login');
 });
 
 

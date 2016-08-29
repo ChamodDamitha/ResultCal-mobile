@@ -1,10 +1,18 @@
-<ion-view>
+<ion-view view-title="Semester {{semCtrl.semester.semNo}} - Results">
     <ion-content>
-        <ion-header-bar>Semester{{semNo}} - Results</ion-header-bar>
+        <div class="item item-select">
+            <select>
+                <option value="x" ng-repeat="x in [1,2,3,4,5,6,7,8]" ng-selected="semCtrl.semester.semNo==x">Semester {{x}}</option>
+            </select>
+            <button class="button button-balanced" ng-click="semCtrl.addSubject()">Add Subject</button>
+        </div>
+
         <ion-list>
-            <ion-item ng-repeat="subject in subjects">
+            <ion-item ng-repeat="subject in semCtrl.semester.subjects">
                 <ion-label>{{subject.name}}</ion-label>
-                <ion-label class="ion-icon-right">{{subject.grade}}</ion-label>
+                <ion-label class="">{{subject.grade}}</ion-label>
+                <button class="button button-energized" ng-click="semCtrl.editSubject(subject)">Edit</button>
+                <button class="button button-assertive" ng-click="semCtrl.deleteSubject(subject)">Delete</button>
             </ion-item>
         </ion-list>
     </ion-content>

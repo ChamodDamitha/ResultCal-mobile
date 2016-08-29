@@ -1,0 +1,20 @@
+<div class="list">
+    <label class="item item-input">
+        <input type="text" placeholder="Subject Name" style="text-align: center" ng-model="semCtrl.selectedSubject.name" required>
+    </label>
+    <label class="item item-input">
+        <input type="text" placeholder="Module Code" style="text-align: center" ng-model="semCtrl.selectedSubject.modulecode" >
+    </label>
+    <div class="item item-select">
+        <label>Credit</label>
+        <select ng-model="semCtrl.selectedSubject.credit">
+            <option ng-repeat="c in [1.0,1.5,2.0,2.5,3.0,3.5,4.0]" value="{{c}}" ng-selected="semCtrl.selectedSubject.credit==c">{{c}}</option>
+        </select>
+    </div>
+    <div class="item item-select">
+        <label>Grade</label>
+        <select ng-model="semCtrl.selectedSubject.grade">
+            <option ng-repeat="g in ['Not Released','A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F','I-WE']" ng-selected="semCtrl.selectedSubject.grade==g" value="{{g}}">{{g}}</option>
+        </select>
+    </div>
+</div>

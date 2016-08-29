@@ -1,0 +1,23 @@
+<ion-view>
+    <ion-header-bar>
+        <h1 class="title">Sign Up</h1>
+    </ion-header-bar>
+    <ion-content>
+        <form ng-submit="signup()">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" placeholder="Name" style="text-align: center" ng-model="newStudent.name" required>
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Index No" maxlength="6" style="text-align: center" ng-model="newStudent.indexno" required>
+                </label>
+                <label class="item item-input">
+                    <input type="password" placeholder="Password" style="text-align: center" ng-model="newStudent.password" required>
+                </label>
+                <label class="item">
+                    <button class="button button-block button-balanced" type="submit">Sign Up</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
